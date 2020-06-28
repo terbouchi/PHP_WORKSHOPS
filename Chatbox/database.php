@@ -1,12 +1,12 @@
 <?php
-$servername = "localhost";
+$hostname = "localhost";
 $username = "root";
 $password = "";
 $dbname = "chatbox";
 
 // Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+$conn = mysqli_connect($hostname, $username, $password, $dbname);
 // Check connection
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
+if (mysqli_connect_error($conn)) {
+  die("Connection failed: " );
 }

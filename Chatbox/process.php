@@ -1,5 +1,6 @@
 <?php
 include 'database.php';
+
 if(isset($_POST["submit"])){
     //inputs:
     $user = mysqli_real_escape_string($conn,$_POST["user"]);
@@ -7,8 +8,9 @@ if(isset($_POST["submit"])){
 
     date_default_timezone_get("Africa/Casablanca");
     $time = date("H:i:s",time());
+    echo $time;
 
-    if(empty($user) || empty($message)){
+  if(empty($user) || empty($message)){
 
         $error = "please fill in the empty fields";
 
@@ -19,7 +21,7 @@ if(isset($_POST["submit"])){
         
     }else{
 
-        $sql1 = "INSERT INTO `shouts` (users, messages,times)
+        $sql1 = "INSERT INTO `shouts` (user, msg,msg_time)
         VALUES ('$user', '$message', '$time')";
 
         $result = mysqli_query($conn, $sql1);

@@ -1,8 +1,9 @@
 <?php 
 include 'database.php';
 
-$sql="SELECT messages, users, times FROM `shouts`";
+$sql="SELECT * from `shouts`";
 $result = mysqli_query($conn, $sql);
+$resultCheck = mysqli_num_rows($result);
 
 ?>
 
@@ -24,9 +25,14 @@ $result = mysqli_query($conn, $sql);
 				<ul>
 					<li class="shout"><span>10:15PM - </span>Brad: Hey what are you guys up to? </li>
 					<li class="shout"><span>10:15PM - </span>Brad: Hey what are you guys up to? </li>
-					<?php while ($row = mysqli_fetch_assoc($result)) : ?>
-              <li class="shout"><span><?php echo $row['times']; ?> --- </span><strong><?php echo $row['users']; ?>:</strong> <?php echo $row['messages']; ?> </li>
-          <?php endwhile; ?> </ul>`
+					<?php 
+					if ($resultCheck > 0) {
+						while ($row = mysqli_fetch_assoc($result)){
+							echo '<li class="shout"> <span>' . $row['msg_time'] .' - </span> <strong>' . $row['user'] . ' : </strong> '. $row['msg'] . '</li>';
+						}
+					}
+						
+          			?> 
 				</ul>
 			</div>
 			<div id="input">
